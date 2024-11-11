@@ -231,3 +231,21 @@ table.datatable-table:focus {
 	outline: solid 1px black;
     outline-offset: -1px;
 }
+
+
+.status-checked-in {
+	background-color: #d4edda;
+	color: #155724;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+  }
+  .status-not-checked-in {
+	background-color: #f8d7da;
+	color: #721c24;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+  }
+  .check-in-link.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+  }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <title>DevFest Lagos 2024 | Olympus</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta content="GDG Devfest hiring manager" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+
+    <!-- App css -->
+    <link
+      href="../../assets/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="../../assets/css/icons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="../../assets/css/app.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <!-- Top Bar Start -->
+  <body>
+    <div class="container-xxl">
+      <div class="row vh-100 d-flex justify-content-center">
+        <div class="col-12 align-self-center">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4 mx-auto">
+                <div class="card">
+                  <div
+                    class="card-body p-0 bg-black auth-header-box rounded-top"
+                  >
+                    <div class="text-center p-3">
+                      <a href="" class="logo logo-admin">
+                        <img
+                          src="../../assets/images/gdg-logo.png"
+                          height="50"
+                          alt="logo"
+                          class="auth-logo"
+                        />
+                      </a>
+                      <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">
+                        Welcome to Olympus!
+                      </h4>
+                      <p class="text-muted fw-medium mb-0">
+                        Sign in
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-body pt-0">
+                    <form class="my-4" id="loginForm">
+                      <div class="form-group mb-2">
+                        <label class="form-label" for="username"
+                          >Email Address</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="username"
+                          name="email_address"
+                          placeholder="Enter email address"
+                          required
+                        />
+                      </div>
+                      <!--end form-group-->
+
+                      <div class="form-group">
+                        <label class="form-label" for="userpassword"
+                          >ID</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="id"
+                          id="userpassword"
+                          placeholder="Enter ID"
+                          required
+                        />
+                      </div>
+                      <!--end form-group-->
+
+                      <div class="form-group mb-0 row">
+                        <div class="col-12">
+                          <div class="d-grid mt-3">
+                            <button class="btn btn-primary" type="submit">
+                              Log In <i class="fas fa-sign-in-alt ms-1"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <!--end col-->
+                      </div>
+                      <!--end form-group-->
+                    </form>
+                    <!--end form-->
+                    <div id="errorMessage" class="text-danger mt-2" style="display: none;"></div>
+                  </div>
+                  <!--end card-body-->
+                </div>
+                <!--end card-->
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+          <!--end card-body-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!-- container -->
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('username').value;
+        const id = document.getElementById('userpassword').value;
+        
+        fetch('https://asgard.devfest.notkruse.dev/volunteers/sessions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email_address: email,
+            id: id
+          })
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Login failed');
+          }
+        })
+        .then(data => {
+          // Store the token in localStorage
+          localStorage.setItem('token', data.token);
+          // Redirect to the dashboard
+          window.location.href = 'users-dashboard.html';
+        })
+        .catch(error => {
+          document.getElementById('errorMessage').textContent = 'Login failed. Please check your credentials.';
+          document.getElementById('errorMessage').style.display = 'block';
+        });
+      });
+    </script>
+  </body>
+  <!--end body-->
+</html>
