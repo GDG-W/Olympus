@@ -62,7 +62,7 @@
                     </div>
                   </div>
                   <div class="card-body pt-0">
-                    <form class="my-4" id="loginForm">
+                    <form class="my-4" id="loginForm" method="POST">
                       <div class="form-group mb-2">
                         <label class="form-label" for="username"
                           >Email Address</label
@@ -126,7 +126,7 @@
 
     <script>
       document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission
         
         const email = document.getElementById('username').value;
         const id = document.getElementById('userpassword').value;
@@ -145,17 +145,25 @@
           if (response.ok) {
             return response.json();
           } else {
-            throw new Error('Login failed');
+            return response.json().then(errorData => {
+              throw new Error(errorData.message || 'Login failed');
+            });
           }
         })
         .then(data => {
-          // Store the token in localStorage
-          localStorage.setItem('token', data.token);
-          // Redirect to the dashboard
-          window.location.href = 'dashboard.html';
+          if (data && data.token) {
+            // Store the token in localStorage
+            localStorage.setItem('token', data.token);
+            console.log('Token stored:', data.token);
+            // Redirect to the dashboard without exposing data in URL
+            window.location.href = 'dashboard.html';
+          } else {
+            throw new Error('No token received from server');
+          }
         })
         .catch(error => {
-          document.getElementById('errorMessage').textContent = 'Login failed. Please check your credentials.';
+          console.error('Login error:', error);
+          document.getElementById('errorMessage').textContent = error.message || 'Login failed. Please check your credentials.';
           document.getElementById('errorMessage').style.display = 'block';
         });
       });
