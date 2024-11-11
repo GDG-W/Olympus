@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-startbar="dark" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8" />
+        <title>DevFest Lagos 2024 | Olympus</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta content="GDG Devfest hiring manager" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    
+        <link
+          href="./assets/libs/simple-datatables/style.css"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <!-- App css -->
+        <link
+          href="./assets/css/bootstrap.min.css"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <link href="./assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="./assets/css/app.min.css" rel="stylesheet" type="text/css" />
+      </head>
+      
+  <body>
+    <!-- Top Bar Start -->
+    <div class="topbar d-print-none">
+      <div class="container-xxl">
+        <nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
+          <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
+            <li>
+              <button class="nav-link mobile-menu-btn nav-icon" id="togglemenu">
+                <i class="iconoir-menu-scale"></i>
+              </button>
+            </li>
+            <li class="mx-3 welcome-text">
+              <h3 class="mb-0 fw-bold text-truncate">Welcome to Olympus!</h3>
+              <h6 class="mb-0 fw-normal text-muted text-truncate fs-14">DevFest Lagos 2024 Volunteers</h6>
+            </li>
+          </ul>
+          <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
+            <li class="topbar-item">
+              <a class="nav-link nav-icon" href="javascript:void(0);" id="light-dark-mode">
+                <i class="icofont-moon dark-mode"></i>
+                <i class="icofont-sun light-mode"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- leftbar-tab-menu -->
+    <div class="startbar d-print-none">
+      <div class="brand">
+        <a href="index.html" class="logo">
+          <span>
+            <img src="./assets/images/gdg-logo.png" alt="logo-small" class="logo-sm" />
+          </span>
+        </a>
+      </div>
+      <div class="startbar-menu">
+        <div class="startbar-collapse" id="startbarCollapse" data-simplebar="">
+          <div class="d-flex align-items-start flex-column w-100">
+            <ul class="navbar-nav mb-auto w-100">
+              <li class="menu-label pt-0 mt-0">
+                <span>Main Menu</span>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                  <i class="iconoir-home-simple menu-icon"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-danger" href="./login.html">
+                  <i class="las la-power-off menu-icon text-danger"></i> Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="startbar-overlay d-print-none"></div>
+
+    <div class="page-wrapper">
+      <div class="page-content">
+        <div class="container-xxl">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h4 class="card-title">Volunteer Details</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body pt-0">
+                  <div class="table-responsive">
+                    <table class="table datatable" id="datatable_1">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Ticket ID</th>
+                          <th>Role</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                          <th style="display: none;">id</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Unity Pugh</td>
+                          <td>unity@gdg.com</td>
+                          <td>1234567890</td>
+                          <td>Speaker Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">1234567890</td>
+                        </tr>
+                        <tr>
+                          <td>Theodore Duran</td>
+                          <td>theodore@gdg.com</td>
+                          <td>2345678901</td>
+                          <td>Registration Desk</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">2345678901</td>
+                        </tr>
+                        <tr>
+                          <td>Kylie Bishop</td>
+                          <td>kylie@gdg.com</td>
+                          <td>3456789012</td>
+                          <td>Technical Support</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">3456789012</td>
+                        </tr>
+                        <tr>
+                          <td>Willow Gilliam</td>
+                          <td>willow@gdg.com</td>
+                          <td>4567890123</td>
+                          <td>Session Moderator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">4567890123</td>
+                        </tr>
+                        <tr>
+                          <td>Blossom Dickerson</td>
+                          <td>blossom@gdg.com</td>
+                          <td>5678901234</td>
+                          <td>Venue Management</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">5678901234</td>
+                        </tr>
+                        <tr>
+                          <td>Elliott Snyder</td>
+                          <td>elliott@gdg.com</td>
+                          <td>6789012345</td>
+                          <td>Social Media Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">6789012345</td>
+                        </tr>
+                        <tr>
+                          <td>Castor Pugh</td>
+                          <td>castor@gdg.com</td>
+                          <td>7890123456</td>
+                          <td>Workshop Facilitator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">7890123456</td>
+                        </tr>
+                        <tr>
+                          <td>Pearl Carlson</td>
+                          <td>pearl@gdg.com</td>
+                          <td>8901234567</td>
+                          <td>Networking Event Organizer</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">8901234567</td>
+                        </tr>
+                        <tr>
+                          <td>Deirdre Bridges</td>
+                          <td>deirdre@gdg.com</td>
+                          <td>9012345678</td>
+                          <td>Sponsor Liaison</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">9012345678</td>
+                        </tr>
+                        <tr>
+                          <td>Daniel Baldwin</td>
+                          <td>daniel@gdg.com</td>
+                          <td>0123456789</td>
+                          <td>Logistics Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">0123456789</td>
+                        </tr>
+                        <tr>
+                          <td>Daniel Baldwin</td>
+                          <td>daniel@gdg.com</td>
+                          <td>0123456789</td>
+                          <td>Logistics Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">0123456789</td>
+                        </tr>
+                        <tr>
+                          <td>Daniel Baldwin</td>
+                          <td>daniel@gdg.com</td>
+                          <td>0123456789</td>
+                          <td>Logistics Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">0123456789</td>
+                        </tr>
+                        <tr>
+                          <td>Daniel Baldwin</td>
+                          <td>daniel@gdg.com</td>
+                          <td>0123456789</td>
+                          <td>Logistics Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">0123456789</td>
+                        </tr>
+                        <tr>
+                          <td>Daniel Baldwin</td>
+                          <td>daniel@gdg.com</td>
+                          <td>0123456789</td>
+                          <td>Logistics Coordinator</td>
+                          <td><span class="status-not-checked-in">Not checked in</span></td>
+                          <td><a href="#" class="check-in-link">Check In</a></td>
+                          <td style="display: none">0123456789</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <footer class="footer text-center text-sm-start d-print-none">
+          <div class="container-xxl">
+            <div class="row">
+              <div class="col-12">
+                <div class="card mb-0 rounded-bottom-0">
+                  <div class="card-body">
+                    <p class="text-muted mb-0">
+                      © <script>document.write(new Date().getFullYear());</script> Olympus
+                      <span class="text-muted d-none d-sm-inline-block float-end">
+                        Crafted with <i class="iconoir-heart text-danger"></i> by DevFest Lagos 2024 Digital Working Group
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+   <!-- Check-in Modal -->
+   <div class="modal fade" id="checkInModal" tabindex="-1" aria-labelledby="checkInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="checkInModalLabel">Check In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="checkInForm">
+            <div class="mb-3">
+              <label for="ticketId" class="form-label">ID</label>
+              <input type="text" class="form-control" id="ticketId" required>
+            </div>
+            <div class="mb-3">
+              <label for="checkInDay" class="form-label">Day</label>
+              <select class="form-select" id="checkInDay" required>
+                <!-- <option value="">Select Day</option> -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <!-- <option value="other">Other</option> -->
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="checkInButton">Check In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Javascript  -->
+    <script src="./assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="./assets/libs/simple-datatables/umd/simple-datatables.js"></script>
+    <script src="./assets/js/pages/datatable.init.js"></script>
+    <script src="./assets/js/app.js"></script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+        const table = document.getElementById('datatable_1');
+        const checkInModal = new bootstrap.Modal(document.getElementById('checkInModal'));
+        let currentRow;
+
+        table.addEventListener('click', function(e) {
+          if (e.target.classList.contains('check-in-link')) {
+            e.preventDefault();
+            currentRow = e.target.closest('tr');
+            const ticketId = currentRow.cells[2].textContent;
+            document.getElementById('ticketId').value = ticketId;
+            checkInModal.show();
+          }
+        });
+
+        document.getElementById('checkInButton').addEventListener('click', function() {
+          const ticketId = document.getElementById('ticketId').value;
+          const checkInDay = document.getElementById('checkInDay').value;
+          const gender = document.getElementById('gender').value;
+
+          if (ticketId && checkInDay && gender) {
+            currentRow.cells[4].innerHTML = '<span class="status-checked-in">Checked in</span>';
+            currentRow.cells[5].innerHTML = '<a href="#" class="check-in-link disabled">Check In</a>';
+            checkInModal.hide();
+            
+            // Reset form fields
+            document.getElementById('checkInForm').reset();
+          } else {
+            alert('Please fill in all fields: ID, Day, and Gender.');
+          }
+        });
+
+        // Initialize DataTable with pagination
+        new simpleDatatables.DataTable(table, {
+          perPage: 10
+        });
+      });
+</script>
+  </body>
+</html>
