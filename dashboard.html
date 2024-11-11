@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!response.ok) throw new Error('Logout failed');
 
       localStorage.removeItem('token');
-      window.location.href = 'volunteer-login.html';
+      window.location.href = 'index.html';
     } catch (error) {
       console.error('Error during logout:', error);
       alert('Logout failed. Please try again.');
