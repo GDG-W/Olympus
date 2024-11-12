@@ -3,7 +3,7 @@ const day = date.getDate();
 
 let currentDay = 1;
 switch (day) {
-  case 12:
+  case 15:
     currentDay = 1;
     break;
   case 16:

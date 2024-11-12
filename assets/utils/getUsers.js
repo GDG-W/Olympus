@@ -47,9 +47,21 @@ function populateTable(allUsers) {
       throw new Error("Failed to fetch users. Redirecting to login.");
     const data = await response.json();
     allUsers = data.items;
-    populateTable(allUsers);
+
+    const filteredUser = allUsers.filter((user) => {
+      if (currentDay === 1) {
+        return user.ticket_tag === "day_one" || user.ticket_tag === "both_days";
+      } else if (currentDay === 2) {
+        return user.ticket_tag === "day_two" || user.ticket_tag === "both_days";
+      }
+      // If currentDay is not 1 or 2, return all users
+      return true;
+    });
+
+    // console.log(filteredUser);
+    populateTable(filteredUser);
   } catch (error) {
-    console.error("Error fetching users:", error);
+    // console.error("Error fetching users:", error);
     showToast("Failed to fetch users. Redirecting to login.", "error");
 
     setTimeout(function () {

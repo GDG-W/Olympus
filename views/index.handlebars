@@ -101,6 +101,11 @@
             </select>
           </div>
         </form>
+        <div
+          id="errorMessage"
+          class="text-danger mx-2"
+          style="display: none;"
+        ></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -113,6 +118,17 @@
     </div>
   </div>
 </div>
+
+<!-- Toast Notification -->
+<div
+  id="toast"
+  class="toast"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+></div>
+
+<script src="/assets/utils/toast.js"></script>
 <script src="/assets/utils/currentDay.js"></script>
 <script src="/assets/utils/loadDataTable.js"></script>
 <script src="/assets/utils/getUsers.js"></script>

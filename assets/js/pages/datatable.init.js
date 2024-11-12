@@ -68,6 +68,7 @@ try {
       if (currentRow[`data-gender`]) {
         document.getElementById("gender").value = currentRow[`data-gender`];
       }
+      document.getElementById("errorMessage").style.display = "none";
       checkInModal.show();
     }
   });
@@ -92,22 +93,46 @@ try {
             throw new Error("No token found in localStorage");
           }
 
-          if (!response.ok) throw new Error("Check-in failed");
+          const response = await fetch(
+            "https://asgard.devfest.notkruse.dev/volunteers/checkins",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                user_id: userId,
+                day: day,
+                gender: gender.toLowerCase(),
+              }),
+            }
+          );
+          console.log(await response.json());
+
+          if (response.status == 409)
+            throw new Error("User has been checked in already.");
+          if (!response.ok && response.status != 409)
+            throw new Error("Check-in failed");
 
           currentRow.querySelector("td:last-child").innerHTML =
             '<span class="text-success">Checked in</span>';
           checkInModal.hide();
           document.getElementById("checkInForm").reset();
           showToast("Check-in successful", "success");
+          setTimeout(function () {
+            window.location.reload();
+          }, 3000);
         } catch (error) {
           console.error("Error during check-in:", error);
-          showToast("Check-in failed. Please try again.", "error");
+          document.getElementById("errorMessage").textContent =
+            error.message || "Check-in failed. Please try again.";
+          document.getElementById("errorMessage").style.display = "block";
         }
       } else {
-        showToast(
-          "Please fill in all fields: User ID, Day, and Gender.",
-          "error"
-        );
+        document.getElementById("errorMessage").textContent =
+          "Please fill in all fields: User ID, Day, and Gender.";
+        document.getElementById("errorMessage").style.display = "block";
       }
     });
 } catch (e) {}
