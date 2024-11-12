@@ -30,17 +30,25 @@ function populateTable(allUsers) {
       throw new Error("No token found in localStorage");
     }
 
-    const response = await fetch("https://asgard.devfest.notkruse.dev/users", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (!response.ok) throw new Error("Failed to fetch users");
+    const response = await fetch(
+      "https://asgard.devfest.notkruse.dev/users?reason=hiring",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok)
+      throw new Error("Failed to fetch users, redirecting to login");
     const data = await response.json();
     allUsers = data.items;
     populateTable(allUsers);
   } catch (error) {
     console.error("Error fetching users:", error);
-    showToast("Failed to fetch users. Please try again.", "error");
+    showToast("Failed to fetch users. Redirecting to login.", "error");
+    setTimeout(function () {
+      deleteTokenKey();
+      window.location.replace("/login");
+    }, 3000);
   }
 })();
