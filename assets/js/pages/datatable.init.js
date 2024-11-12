@@ -54,11 +54,3 @@ try {
       .querySelector(".checkbox-all thead tr th:first-child button")
       .classList.remove("datatable-sorter");
 } catch (e) {}
-try {
-  document.querySelector("tbody").addEventListener("click", (event) => {
-    const trElement = event.target.closest("tr");
-    if (trElement && !event.target.closest("a")) {
-      window.location.href = `/detail/${trElement.id}`;
-    }
-  });
-} catch (e) {}
