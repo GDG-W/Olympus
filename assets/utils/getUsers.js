@@ -11,7 +11,7 @@ function populateTable(allUsers) {
     row.innerHTML = `
       <td>${user.fullname}</td>
       <td>${user.email_address}</td>
-      <td>${user.ticket_id}</td>
+      <td>${user.ticket_title}</td>
       <td>${user.role}</td>
       <td>${user.level_of_expertise}</td>
       <td><a href=${user.resume_url} target="_blank" onclick="event.stopPropagation()">View CV</a></td>
@@ -31,7 +31,7 @@ function populateTable(allUsers) {
     }
 
     const response = await fetch(
-      "https://asgard.devfest.notkruse.dev/users?reason=hiring",
+      "https://asgard.devfestlagos.com/users?reason=hiring",
       {
         headers: {
           Authorization: `Bearer ${token}`,

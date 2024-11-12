@@ -9,7 +9,7 @@ document
       }
 
       const response = await fetch(
-        "https://asgard.devfest.notkruse.dev/hirers/sessions",
+        "https://asgard.devfestlagos.com/hirers/sessions",
         {
           method: "DELETE",
           headers: {
