@@ -59,6 +59,36 @@ try {
     document.getElementById("checkInModal")
   );
   let currentRow;
+  const statusElem = document.getElementById("statusMessage");
+  function showStatusMessage(type, message) {
+    if (type == "error") {
+      if (statusElem.classList.contains("text-success")) {
+        statusElem.classList.replace("text-success", "text-danger");
+      } else {
+        statusElem.classList.add("text-danger");
+      }
+
+      statusElem.textContent = message;
+
+      statusElem.style.display = "block";
+      return true;
+    } else if (type == "success") {
+      if (statusElem.classList.contains("text-danger")) {
+        statusElem.classList.replace("text-danger", "text-success");
+      } else {
+        statusElem.classList.add("text-success");
+      }
+
+      statusElem.textContent = message;
+
+      statusElem.style.display = "block";
+      return true;
+    } else return false;
+  }
+  function hideStatusMessage() {
+    statusElem.style.display = "none";
+  }
+
   document.querySelector("tbody").addEventListener("click", function (e) {
     if (e.target.classList.contains("check-in-link")) {
       e.preventDefault();
@@ -68,7 +98,7 @@ try {
       if (currentRow[`data-gender`]) {
         document.getElementById("gender").value = currentRow[`data-gender`];
       }
-      document.getElementById("errorMessage").style.display = "none";
+      hideStatusMessage();
       checkInModal.show();
     }
   });
@@ -108,7 +138,7 @@ try {
               }),
             }
           );
-          console.log(await response.json());
+          // console.log(await response.json());
 
           if (response.status == 409)
             throw new Error("User has been checked in already.");
@@ -118,21 +148,25 @@ try {
           currentRow.querySelector("td:last-child").innerHTML =
             '<span class="text-success">Checked in</span>';
           checkInModal.hide();
+
           document.getElementById("checkInForm").reset();
-          showToast("Check-in successful", "success");
-          setTimeout(function () {
-            window.location.reload();
-          }, 3000);
+
+          showStatusMessage("success", "Check-in successful");
+          // setTimeout(function () {
+          //   window.location.reload();
+          // }, 3000);
         } catch (error) {
-          console.error("Error during check-in:", error);
-          document.getElementById("errorMessage").textContent =
-            error.message || "Check-in failed. Please try again.";
-          document.getElementById("errorMessage").style.display = "block";
+          // console.error("Error during check-in:", error);
+          showStatusMessage(
+            "error",
+            error.message || "Check-in failed. Please try again."
+          );
         }
       } else {
-        document.getElementById("errorMessage").textContent =
-          "Please fill in all fields: User ID, Day, and Gender.";
-        document.getElementById("errorMessage").style.display = "block";
+        showStatusMessage(
+          "error",
+          "Please fill in all fields: User ID, Day, and Gender."
+        );
       }
     });
 } catch (e) {}
