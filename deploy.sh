@@ -1,6 +1,7 @@
 set -e
 
-VERSION=wakanda-$(git describe --always)
+SERVICE_NAME=wakanda
+VERSION=${SERVICE_NAME}-$(git describe --always)
 REPOSITORY="emmanuerl/dflagos24"
 TAG=${REPOSITORY}:${VERSION}
 
@@ -16,7 +17,7 @@ push(){
 cleanup(){
   echo "successfully built and pushed ${TAG} @ $(date)"
 
-  echo "docker rm -f wakanda.devfest.notkruse.dev && docker run --name olympus.devfest.notkruse.dev -p 11100:80 -d ${TAG}"
+  echo "docker rm -f ${SERVICE_NAME}.devfest.notkruse.dev && docker run --name ${SERVICE_NAME}.devfest.notkruse.dev -p 11100:80 -d ${TAG}"
 }
 
 build
