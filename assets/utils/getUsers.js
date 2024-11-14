@@ -2,6 +2,7 @@ const userListElem = document.querySelector("#userList");
 
 function populateTable(allUsers) {
   // Create table rows
+  console.log("inerw");
   allUsers.forEach((user) => {
     // if (!user.resume_url) return;
     const row = document.createElement("tr");
@@ -27,7 +28,7 @@ function populateTable(allUsers) {
 
     userListElem.appendChild(row);
   });
-
+  // console.log("loading users");
   loadDataTable();
 }
 
@@ -58,13 +59,15 @@ function populateTable(allUsers) {
     const data = await response.json();
     allUsers = data.items;
 
-    const filteredUser = allUsers.filter((user) => {
-      return user.checkins.length > 0;
-    });
+    //console.log(allUsers);
+    // const filteredUser = allUsers.filter((user) => {
+    //   return user.checkins.length > 0;
+    // });
 
-    document.querySelector("#totalCheckIns").textContent = filteredUser.length;
+    // document.querySelector("#totalCheckIns").textContent = filteredUser.length;
 
     populateTable(allUsers);
+    // console.log("populated");
   } catch (error) {
     // console.error("Error fetching users:", error);
     showToast("Failed to fetch users. Redirecting to login.", "error");
