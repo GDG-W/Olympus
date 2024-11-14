@@ -31,7 +31,7 @@ function populateTable(allUsers) {
     }
 
     const response = await fetch(
-      "https://asgard.devfestlagos.com/users?reason=hiring",
+      "https://asgard.devfestlagos.com/users?limit=4000&reason=hiring",
       {
         headers: {
           Authorization: `Bearer ${token}`,
