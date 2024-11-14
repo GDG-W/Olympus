@@ -79,9 +79,7 @@
                       <!--end form-group-->
 
                       <div class="form-group">
-                        <label class="form-label" for="userpassword"
-                          >ID</label
-                        >
+                        <label class="form-label" for="userpassword">ID</label>
                         <input
                           type="text"
                           class="form-control"
@@ -106,7 +104,11 @@
                       <!--end form-group-->
                     </form>
                     <!--end form-->
-                    <div id="errorMessage" class="text-danger mt-2" style="display: none;"></div>
+                    <div
+                      id="errorMessage"
+                      class="text-danger mt-2"
+                      style="display: none"
+                    ></div>
                   </div>
                   <!--end card-body-->
                 </div>
@@ -125,40 +127,43 @@
     <!-- container -->
 
     <script>
-      document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('username').value;
-        const id = document.getElementById('userpassword').value;
-        
-        fetch('https://asgard.devfest.notkruse.dev/volunteers/sessions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email_address: email,
-            id: id
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const email = document.getElementById("username").value;
+          const id = document.getElementById("userpassword").value;
+
+          fetch("https://asgard.devfestlagos.com/volunteers/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email_address: email,
+              id: id,
+            }),
           })
-        })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Login failed');
-          }
-        })
-        .then(data => {
-          // Store the token in localStorage
-          localStorage.setItem('token', data.token);
-          // Redirect to the dashboard
-          window.location.href = 'users-dashboard.html';
-        })
-        .catch(error => {
-          document.getElementById('errorMessage').textContent = 'Login failed. Please check your credentials.';
-          document.getElementById('errorMessage').style.display = 'block';
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error("Login failed");
+              }
+            })
+            .then((data) => {
+              // Store the token in localStorage
+              localStorage.setItem("token", data.token);
+              // Redirect to the dashboard
+              window.location.href = "users-dashboard.html";
+            })
+            .catch((error) => {
+              document.getElementById("errorMessage").textContent =
+                "Login failed. Please check your credentials.";
+              document.getElementById("errorMessage").style.display = "block";
+            });
         });
-      });
     </script>
   </body>
   <!--end body-->

@@ -6,7 +6,7 @@ loginForm.onsubmit = async function (e) {
   const email = e.target.elements["email"].value;
   const id = e.target.elements["id"].value;
 
-  fetch("https://asgard.devfest.notkruse.dev/volunteers/sessions", {
+  fetch("https://asgard.devfestlagos.com/volunteers/sessions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

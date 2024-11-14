@@ -124,7 +124,7 @@ try {
           }
 
           const response = await fetch(
-            "https://asgard.devfest.notkruse.dev/volunteers/checkins",
+            "https://asgard.devfestlagos.com/volunteers/checkins",
             {
               method: "POST",
               headers: {

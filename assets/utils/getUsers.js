@@ -12,7 +12,7 @@ function populateTable(allUsers) {
     row.innerHTML = `
       <td>${user.fullname}</td>
       <td>${user.email_address}</td>
-      <td>${user.ticket_id}</td>
+      <td>${user.id}</td>
       <td>${user.role || "N/A"}</td>
       <td>
         ${
@@ -40,11 +40,13 @@ function populateTable(allUsers) {
 
     const queryDay =
       currentDay && (currentDay == 1 || currentDay == 2)
-        ? `?day=${currentDay}`
+        ? `&day=${currentDay}`
         : "";
 
     const response = await fetch(
-      `https://asgard.devfest.notkruse.dev/users${queryDay ? queryDay : ""}`,
+      `https://asgard.devfestlagos.com/users?limit=4000${
+        queryDay ? queryDay : ""
+      }`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

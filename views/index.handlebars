@@ -34,7 +34,7 @@
                       <th>Full Name</th>
                       <th>Email</th>
                       <th>Ticket ID</th>
-                      <th>Ticket Type</th>
+                      <th>Role</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -55,35 +55,18 @@
   <!-- end page content -->
 </div>
 <!-- Check-in Modal -->
-<div
-  class="modal fade"
-  id="checkInModal"
-  tabindex="-1"
-  aria-labelledby="checkInModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="checkInModal" tabindex="-1" aria-labelledby="checkInModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="checkInModalLabel">Check In</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form id="checkInForm">
           <div class="mb-3">
             <label for="userId" class="form-label">User ID</label>
-            <input
-              type="text"
-              class="form-control"
-              id="userId"
-              required
-              readonly
-            />
+            <input type="text" class="form-control" id="userId" required readonly />
           </div>
           <div class="mb-3">
             <label for="checkInDay" class="form-label">Day</label>
@@ -116,13 +99,7 @@
 </div>
 
 <!-- Toast Notification -->
-<div
-  id="toast"
-  class="toast"
-  role="alert"
-  aria-live="assertive"
-  aria-atomic="true"
-></div>
+<div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
 
 <script src="/assets/utils/toast.js"></script>
 <script src="/assets/utils/currentDay.js"></script>
