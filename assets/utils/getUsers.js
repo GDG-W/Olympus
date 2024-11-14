@@ -38,8 +38,13 @@ function populateTable(allUsers) {
       throw new Error("No token found in localStorage");
     }
 
+    const queryDay =
+      currentDay && (currentDay == 1 || currentDay == 2)
+        ? `?day=${currentDay}`
+        : "";
+
     const response = await fetch(
-      `https://asgard.devfest.notkruse.dev/users?day=${currentDay}`,
+      `https://asgard.devfest.notkruse.dev/users${queryDay ? queryDay : ""}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -50,16 +55,6 @@ function populateTable(allUsers) {
       throw new Error("Failed to fetch users. Redirecting to login.");
     const data = await response.json();
     allUsers = data.items;
-
-    // const filteredUser = allUsers.filter((user) => {
-    //   if (currentDay === 1) {
-    //     return user.ticket_tag === "day_one" || user.ticket_tag === "both_days";
-    //   } else if (currentDay === 2) {
-    //     return user.ticket_tag === "day_two" || user.ticket_tag === "both_days";
-    //   }
-    //   // If currentDay is not 1 or 2, return all users
-    //   return true;
-    // });
 
     const filteredUser = allUsers.filter((user) => {
       return user.checkins.length > 0;
