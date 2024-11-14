@@ -35,14 +35,14 @@ app.use((req, res, next) => {
 // Routes
 app.get("/", async (req, res) => {
   res.render("index", {
-    title: "DevFest Lagos 2024 | Olympus",
+    title: "DevFest Lagos 2024 | Wakanda",
     currentPage: "index",
   });
 });
 
 app.get("/login", (req, res) => {
   res.render("login", {
-    title: "DevFest Lagos 2024 | Olympus",
+    title: "DevFest Lagos 2024 | Wakanda",
     currentPage: "login",
     layout: "auth",
   });
