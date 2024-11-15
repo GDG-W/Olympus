@@ -1,4 +1,10 @@
 try {
+  if (window.simpleDataTableInstance) {
+    window.simpleDataTableInstance.destroy();
+  }
+  window.simpleDataTableInstance = new SimpleDataTable("#userList");
+} catch (e) {}
+try {
   new simpleDatatables.DataTable("#datatable_1", {
     searchable: !0,
     fixedHeight: !1,

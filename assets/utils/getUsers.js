@@ -1,8 +1,8 @@
 const userListElem = document.querySelector("#userList");
 
-function populateTable(allUsers) {
-  // Create table rows
-  console.log("inerw");
+async function createRows(allUsers) {
+  const fragment = document.createDocumentFragment();
+
   allUsers.forEach((user) => {
     // if (!user.resume_url) return;
     const row = document.createElement("tr");
@@ -11,24 +11,33 @@ function populateTable(allUsers) {
     row[`data-gender`] = user.gender;
 
     row.innerHTML = `
-      <td>${user.fullname}</td>
-      <td>${user.email_address}</td>
-      <td>${user.id}</td>
-      <td>${user.role || "N/A"}</td>
-      <td>
-        ${
-          user.checkins && currentDay > 0
-            ? user.checkins.includes(currentDay)
-              ? '<span class="text-success">Checked in</span>'
-              : `<a href="#" class="check-in-link" data-id="${user.id}">Check In</a>`
-            : '<span class="text" style="opacity: .5; cursor: not-allowed;">Unavailable</span>'
-        }
-      </td>
-    `;
+    <td>${user.fullname}</td>
+    <td>${user.email_address}</td>
+    <td>${user.id}</td>
+    <td>${user.role || "N/A"}</td>
+    <td>
+      ${
+        user.checkins && currentDay > 0
+          ? user.checkins.includes(currentDay)
+            ? '<span class="text-success">Checked in</span>'
+            : `<a href="#" class="check-in-link" data-id="${user.id}">Check In</a>`
+          : '<span class="text" style="opacity: .5; cursor: not-allowed;">Unavailable</span>'
+      }
+    </td>
+  `;
 
-    userListElem.appendChild(row);
+    fragment.appendChild(row);
   });
-  // console.log("loading users");
+
+  return fragment;
+}
+
+async function populateTable(allUsers) {
+  // Create table rows
+  const fragment = await createRows(allUsers);
+
+  userListElem.appendChild(fragment);
+
   loadDataTable();
 }
 
@@ -72,10 +81,10 @@ function populateTable(allUsers) {
     // console.error("Error fetching users:", error);
     showToast("Failed to fetch users. Redirecting to login.", "error");
 
-    setTimeout(function () {
-      deleteTokenKey();
-      deleteUser();
-      window.location.replace("/login");
-    }, 3000);
+    // setTimeout(function () {
+    //   deleteTokenKey();
+    //   deleteUser();
+    //   window.location.replace("/login");
+    // }, 3000);
   }
 })();
