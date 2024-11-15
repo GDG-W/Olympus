@@ -157,10 +157,7 @@ try {
 
           document.getElementById("checkInForm").reset();
 
-          showStatusMessage("success", "Check-in successful");
-          // setTimeout(function () {
-          //   window.location.reload();
-          // }, 3000);
+          showToast("Check-in successful", "success");
         } catch (error) {
           // console.error("Error during check-in:", error);
           showStatusMessage(
