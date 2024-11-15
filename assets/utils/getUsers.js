@@ -38,17 +38,20 @@ function populateTable(allUsers) {
         },
       }
     );
-    if (!response.ok)
-      throw new Error("Failed to fetch users, redirecting to login");
+    if (response.status == 401) {
+      showToast("session timeout, redirecting to login.", "error");
+      setTimeout(function () {
+        deleteTokenKey();
+        window.location.replace("/login");
+      }, 3000);
+    } else if (response.status == 500) {
+      showToast("server error, please contact an admin.", "error");
+    } else if (!response.ok) throw new Error("Failed to fetch users.");
     const data = await response.json();
     allUsers = data.items;
     populateTable(allUsers);
   } catch (error) {
     console.error("Error fetching users:", error);
-    showToast("Failed to fetch users. Redirecting to login.", "error");
-    setTimeout(function () {
-      deleteTokenKey();
-      window.location.replace("/login");
-    }, 3000);
+    showToast("Failed to fetch users.", "error");
   }
 })();
